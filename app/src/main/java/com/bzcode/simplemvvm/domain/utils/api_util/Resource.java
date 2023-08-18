@@ -1,9 +1,9 @@
 package com.bzcode.simplemvvm.domain.utils.api_util;
 
 
-import static com.bzcode.tutorial.domain.utils.utils.api_util.Status.ERROR;
-import static com.bzcode.tutorial.domain.utils.utils.api_util.Status.LOADING;
-import static com.bzcode.tutorial.domain.utils.utils.api_util.Status.SUCCESS;
+import static com.bzcode.simplemvvm.domain.utils.api_util.Status.ERROR;
+import static com.bzcode.simplemvvm.domain.utils.api_util.Status.LOADING;
+import static com.bzcode.simplemvvm.domain.utils.api_util.Status.SUCCESS;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -3,8 +3,6 @@ package com.bzcode.simplemvvm.domain.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.bzcode.tutorial.domain.utils.Config;
-
 
 public class SharedPrefHelper {
 
