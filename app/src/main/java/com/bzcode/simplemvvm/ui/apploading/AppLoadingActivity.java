@@ -8,6 +8,7 @@ import com.bzcode.simplemvvm.R;
 
 public class AppLoadingActivity extends AppCompatActivity {
 
+    //v2
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
