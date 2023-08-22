@@ -89,6 +89,8 @@ public class EmployeeRepository implements IEmployeeRepository {
 
         try
         {
+            statusLiveData.postValue(Resource.loading(null));
+
             RegisterRequest request = new RegisterRequest(name, email, phone);
 
             Call<RegisterResponse> apiResponse = apiService.registerUser(request);
