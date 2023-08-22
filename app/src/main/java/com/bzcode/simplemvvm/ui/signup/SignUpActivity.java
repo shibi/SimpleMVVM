@@ -1,14 +1,9 @@
 package com.bzcode.simplemvvm.ui.signup;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Toast;
 
 import com.bzcode.simplemvvm.R;
 import com.bzcode.simplemvvm.data.remote.api.ApiGenerator;
@@ -16,24 +11,24 @@ import com.bzcode.simplemvvm.data.remote.api.ApiService;
 import com.bzcode.simplemvvm.data.remote.dto.register.RegisterResponse;
 import com.bzcode.simplemvvm.data.repository.EmployeeRepository;
 import com.bzcode.simplemvvm.domain.repository.IEmployeeRepository;
-import com.bzcode.simplemvvm.domain.utils.AppDialogs;
 import com.bzcode.simplemvvm.domain.utils.api_util.Resource;
+import com.bzcode.simplemvvm.ui.base.BaseActivity;
 import com.bzcode.simplemvvm.ui.login.LoginActivity;
 
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends BaseActivity {
 
-    private AppDialogs progressDialog;
     private SignUpViewModel signUpViewModel;
 
     private AppCompatEditText etName, etEmail, etPhone;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+    protected int setContentLayout() {
+        return R.layout.activity_sign_up;
+    }
 
-        progressDialog = new AppDialogs(this);
+    @Override
+    protected void initView() {
 
         etName = findViewById(R.id.et_name);
         etEmail = findViewById(R.id.et_email);
@@ -134,24 +129,4 @@ public class SignUpActivity extends AppCompatActivity {
         inputField.setError(errorMsg);
         inputField.requestFocus();
     }
-
-    /**
-     * to show toast
-     */
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * to redirect to next screen
-     * */
-    private <T> void redirectTo(Class<T> destination, boolean keepHistory){
-
-        Intent destinationIntent = new Intent(this, destination);
-        startActivity(destinationIntent);
-        if(!keepHistory){
-            finish();
-        }
-    }
-
 }

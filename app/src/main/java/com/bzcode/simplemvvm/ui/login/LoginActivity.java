@@ -1,15 +1,10 @@
 package com.bzcode.simplemvvm.ui.login;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Toast;
 
 import com.bzcode.simplemvvm.R;
 import com.bzcode.simplemvvm.data.remote.api.ApiGenerator;
@@ -17,30 +12,30 @@ import com.bzcode.simplemvvm.data.remote.api.ApiService;
 import com.bzcode.simplemvvm.data.remote.dto.login.User;
 import com.bzcode.simplemvvm.data.repository.EmployeeRepository;
 import com.bzcode.simplemvvm.domain.repository.IEmployeeRepository;
-import com.bzcode.simplemvvm.domain.utils.AppDialogs;
 import com.bzcode.simplemvvm.domain.utils.api_util.Resource;
+import com.bzcode.simplemvvm.ui.base.BaseActivity;
 import com.bzcode.simplemvvm.ui.dashboard.DashboardActivity;
 import com.bzcode.simplemvvm.ui.signup.SignUpActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     private LoginViewModel loginViewModel;
 
     private AppCompatEditText etEmail, etPhone;
-    private AppDialogs progressDialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    protected int setContentLayout() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    protected void initView() {
 
         etEmail = findViewById(R.id.et_email);
         etPhone = findViewById(R.id.et_phone);
         AppCompatButton btn_login = findViewById(R.id.btn_signIn);
         AppCompatTextView tv_signup = findViewById(R.id.tv_signup);
 
-
-        progressDialog = new AppDialogs(this);
 
         //api service
         ApiService apiService = ApiGenerator.createNoTokenApiService(ApiService.class);
@@ -117,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validate(){
 
         String email = etEmail.getText().toString();
-        String phone = etEmail.getText().toString();
+        String phone = etPhone.getText().toString();
 
         if(email.isEmpty()){
             showError(etEmail, "Enter email");
@@ -142,18 +137,5 @@ public class LoginActivity extends AppCompatActivity {
         inputField.requestFocus();
     }
 
-    //to show toast
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
 
-    //to redirect to next screen
-    private <T> void redirectTo(Class<T> destination, boolean keepHistory){
-
-        Intent destinationIntent = new Intent(this, destination);
-        startActivity(destinationIntent);
-        if(!keepHistory){
-            finish();
-        }
-    }
 }

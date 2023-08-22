@@ -1,17 +1,18 @@
 package com.bzcode.simplemvvm.ui.apploading;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
 import com.bzcode.simplemvvm.R;
+import com.bzcode.simplemvvm.ui.base.BaseActivity;
 
-public class AppLoadingActivity extends AppCompatActivity {
+public class AppLoadingActivity extends BaseActivity {
 
     //v2
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_app_loading);
+    protected int setContentLayout() {
+        return R.layout.activity_app_loading;
+    }
+
+    @Override
+    protected void initView() {
+
     }
 }
